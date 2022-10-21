@@ -7,7 +7,10 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
     <Title>GalacticLib (Miscellaneous)</Title>
+    <Authors>Galacticai</Authors>
     <Copyright>2022 Galacticai</Copyright>
+    <PackageProjectUrl>https://github.com/Galacticai/GalacticLib.Misc</PackageProjectUrl>
+    <PackageRepositoryUrl>https://github.com/Galacticai/GalacticLib.Misc</PackageRepositoryUrl>
     <PackageProjectUrl>https://github.com/Galacticai/GalacticLib.Misc</PackageProjectUrl>
     <PackageTags>Galacticai;GalacticLib;Lib;Library;Misc;Miscellaneous;</PackageTags>
     <NeutralLanguage>en-001</NeutralLanguage>
