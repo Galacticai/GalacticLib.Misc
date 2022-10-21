@@ -1,4 +1,4 @@
-// —————————————————————————————————————————————
+﻿// —————————————————————————————————————————————
 //? 
 //!? 📜 Mask.cs
 //!? 🖋️ Galacticai 📅 2022
@@ -25,6 +25,7 @@ namespace GalacticLib.Misc {
     /// </list></summary> 
     /// <typeparam name="TMaskKey"> Type of the key of <see cref="MaskFunctions"/> </typeparam>
     /// <typeparam name="TValue"> Type of the <see cref="Value"/> </typeparam>
+    public class Mask<TMaskKey, TValue> where TMaskKey : notnull {
         /// <summary> Clear <see cref="MaskFunctions"/> </summary>
         /// <returns> <see cref="OriginalValue"/> </returns>
         public TValue Reset() {
