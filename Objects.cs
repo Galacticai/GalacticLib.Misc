@@ -16,6 +16,7 @@ using System.Linq;
 namespace GalacticLib.Misc {
     /// <summary> Various tools for <see cref="object"/>s </summary>
     public static class Objects {
+        /// <summary> Find all subclasses of the type {<typeparamref name="T"/>}</summary>
         public static IEnumerable<Type> FindSubClassesOf<T>() {
             var baseType = typeof(T);
             return baseType
