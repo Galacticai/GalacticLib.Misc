@@ -8,7 +8,7 @@
 //? 
 //  —————————————————————————————————————————————
 
-using Commanders.Assets.Scripts.Lib.Platforms;
+using GalacticLib.Platforms;
 using System;
 using System.IO;
 using System.Reflection;
@@ -61,6 +61,7 @@ namespace GalacticLib.Misc {
         /// <item> Windows: '\' </item> <item> Linux: '/' </item>
         /// </list> </returns>
         public static char GetPathSlash()
+            => Platforms.Platform.RunningWindows ? '\\' : '/';
         /// <summary> Get a slash or a backslash depending on <paramref name="pathOS"/> </summary>
         public static char GetPathSlash(PathOS pathOS)
             => pathOS == PathOS.Windows ? '\\' : '/';
