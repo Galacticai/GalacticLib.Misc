@@ -42,6 +42,9 @@ namespace GalacticLib.Misc {
             if (!contains) return default;
             return (ITValue)value;
         }
+        /// <summary> Sets the value associated with the specified <typeparamref name="ITValue"/> (type key) </summary>
+        /// <typeparam name="ITValue"> Type inherited from <typeparamref name="TValue"/> </typeparam>
+        /// <returns> true if the operation is complete </returns>
         public virtual bool Set<ITValue>(ITValue value) where ITValue : TValue
             => Set(value, false);
         /// <summary> Sets the value associated with the specified <typeparamref name="ITValue"/> (type key) </summary>
