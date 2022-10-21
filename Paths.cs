@@ -131,10 +131,14 @@ namespace GalacticLib.Misc {
             if (!path.PathIsValid()) return false;
 
             PathType pathType = path.GetPathType();
-            if (pathType == PathType.File)
+            if (pathType == PathType.File) {
                 File.Delete(path);
-            else if (pathType == PathType.Directory)
+                return true;
+            }
+            else if (pathType == PathType.Directory) {
                 Directory.Delete(path);
+                return true;
+            }
             return false;
         }
 
