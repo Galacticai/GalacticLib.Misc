@@ -1,6 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-<PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>GalacticLib.Misc</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -17,13 +16,14 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-</PropertyGroup>
-
-<ItemGroup>
+  </PropertyGroup>
+  <ItemGroup>
     <None Update="LICENSE">
-        <PackagePath>\</PackagePath>
-        <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <Pack>True</Pack>
     </None>
-</ItemGroup>
-
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="GalacticLib.Platforms" Version="1.0.0" />
+  </ItemGroup>
 </Project>
