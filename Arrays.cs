@@ -1,4 +1,4 @@
-﻿/// —————————————————————————————————————————————
+/// —————————————————————————————————————————————
 //? 
 //!? 📜 Arrays.cs
 //!? 🖋️ Galacticai 📅 2022
@@ -30,6 +30,7 @@ namespace GalacticLib.Misc {
 
         public static bool ContainsSubType<T, TTarget>(this T[] values) where TTarget : T {
             foreach (var value in values)
+                if (value != null)
                 if (value.GetType() is TTarget)
                     return true;
             return false;
