@@ -49,12 +49,27 @@ namespace GalacticLib.Misc {
         /// <item> (ApplicationData)/(AppName) </item>
         /// <item> null (if the executing assembly name is not available) </item>
         /// </list></returns>
+        public static string? ThisApplicationData {
+            get {
+                string? executingAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+                if (string.IsNullOrEmpty(executingAssemblyName))
+                    return null;
+                return Path.Combine(ApplicationData, executingAssemblyName);
+            }
+        }
         #endregion
 
 
         #region Methods
         /// <summary> Create a directory for this application (called after the executing assembly name)
         /// <br/> Note: This cannot be done if the executing assembly name is not available </summary>
+        public static bool TryCreate_ThisApplicationData() {
+            string? thisAppData = ThisApplicationData;
+            if (string.IsNullOrEmpty(thisAppData))
+                return false;
+            new DirectoryInfo(thisAppData).Create();
+            return true;
+        }
 
         /// <summary> Get a slash or a backslash depending on the currently running OS </summary>
         /// <returns> <list type="bullet">
@@ -136,7 +151,9 @@ namespace GalacticLib.Misc {
         public static string GetUnusedPath(this string path, int maxTries) {
             if (!path.PathExists() || !path.PathIsValid())
                 return path;
-            string directory = Path.GetDirectoryName(path);
+            string directory = Path.GetDirectoryName(path) ?? "";
+            if (string.IsNullOrEmpty(directory))
+                return path;
             string name = Path.GetFileNameWithoutExtension(path);
             string dot_extension = Path.GetExtension(path) ?? string.Empty;
             string newPath = string.Empty;
