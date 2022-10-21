@@ -1,4 +1,4 @@
-// —————————————————————————————————————————————
+﻿// —————————————————————————————————————————————
 //?
 //!? 📜 TypeDictionary.cs
 //!? 🖋️ Galacticai 📅 2022
@@ -39,8 +39,10 @@ namespace GalacticLib.Misc {
         /// <summary> Gets the value associated with the specified <typeparamref name="ITValue"/> (type key). </summary>
         /// <typeparam name="ITValue"> Type inherited from <typeparamref name="TValue"/> </typeparam>
         /// <returns> The value; Otherwise, <c>default(<typeparamref name="ITValue"/>)</c>. </returns>
+        public virtual ITValue? Get<ITValue>() where ITValue : TValue {
+            bool contains = Dictionary.TryGetValue(typeof(ITValue), out TValue? value);
             if (!contains) return default;
-            return (ITValue)value;
+            return (ITValue?)value;
         }
         /// <summary> Sets the value associated with the specified <typeparamref name="ITValue"/> (type key) </summary>
         /// <typeparam name="ITValue"> Type inherited from <typeparamref name="TValue"/> </typeparam>
@@ -70,7 +72,7 @@ namespace GalacticLib.Misc {
             //? > Directly:
             //?     + Check if type exists
             //?     + Compare value of that key to the provided value
-            ITValue value_FromDictionary = Get<ITValue>();
+            ITValue? value_FromDictionary = Get<ITValue>();
             if (value_FromDictionary == null) return false;
             return Comparer<ITValue>.Default.Compare(value, value_FromDictionary) >= 0;
         }
