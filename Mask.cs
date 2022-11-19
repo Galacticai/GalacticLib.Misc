@@ -1,28 +1,25 @@
-﻿/// —————————————————————————————————————————————
-//? 
+﻿// —————————————————————————————————————————————
+//?
 //!? 📜 Mask.cs
 //!? 🖋️ Galacticai 📅 2022
 //!  ⚖️ GPL-3.0-or-later
 //?  🔗 Dependencies: No special dependencies
-//? 
-/// —————————————————————————————————————————————
+//?
+// —————————————————————————————————————————————
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace GalacticLib.Misc {
     /// <summary> Masks the original value with a different one,
-    /// <br/> while keeping the original value safely as <see cref="OriginalValue"/> 
+    /// <br/> while keeping the original value safely as <see cref="OriginalValue"/>
     /// <br/><br/>
     /// _______________
     /// <br/>
     /// To get the currently active value of this mask:
     /// <br/><list type="bullet">
-    ///     <item> (Implicit) `<c> mask </c>`  (Not all types work with this)</item> 
-    ///     <item> (Explicit) `<c> (<typeparamref name="TValue"/>)mask </c>` </item> 
+    ///     <item> (Implicit) `<c> mask </c>`  (Not all types work with this)</item>
+    ///     <item> (Explicit) `<c> (<typeparamref name="TValue"/>)mask </c>` </item>
     ///     <item>   (Direct) `<c> <see cref="Value"/> </c>` </item>
-    /// </list></summary> 
+    /// </list></summary>
     /// <typeparam name="TMaskKey"> Type of the key of <see cref="MaskFunctions"/> </typeparam>
     /// <typeparam name="TValue"> Type of the <see cref="Value"/> </typeparam>
     public class Mask<TMaskKey, TValue> {

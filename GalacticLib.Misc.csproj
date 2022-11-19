@@ -8,19 +8,26 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
     <Title>GalacticLib (Miscellaneous)</Title>
-    <Copyright>2022 Galacticai</Copyright>
-    <PackageProjectUrl>https://github.com/Galacticai/GalacticLib.Misc</PackageProjectUrl>
+    <Copyright>©2022 Galacticai</Copyright>
+    <PackageProjectUrl>https://Galacticai.github.io/GalacticLib</PackageProjectUrl>
+    <PackageRepositoryUrl>https://github.com/Galacticai/GalacticLib.Misc</PackageRepositoryUrl>
     <PackageTags>Galacticai;GalacticLib;Lib;Library;Misc;Miscellaneous;</PackageTags>
     <NeutralLanguage>en-001</NeutralLanguage>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
-    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+	<Authors>Galacticai</Authors>
+	<VersionPrefix>1.0.2</VersionPrefix>
+	<AssemblyVersion>1.0.2</AssemblyVersion>
+	<FileVersion>1.0.2</FileVersion>
+	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
 </PropertyGroup>
 
 <ItemGroup>
     <None Update="LICENSE">
+        <PackagePath>\</PackagePath>
+        <Pack>True</Pack>
+    </None>
+    <None Update="README.md">
         <PackagePath>\</PackagePath>
         <Pack>True</Pack>
     </None>

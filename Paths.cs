@@ -1,16 +1,13 @@
 ﻿/// —————————————————————————————————————————————
-//? 
+//?
 //!? 📜 Paths.cs
 //!? 🖋️ Galacticai 📅 2022
 //!  ⚖️ GPL-3.0-or-later
-//?  🔗 Dependencies: 
+//?  🔗 Dependencies:
 //      + (Galacticai) Platforms/Platform.cs
-//? 
+//?
 /// —————————————————————————————————————————————
 
-using Commanders.Assets.Scripts.Lib.Platforms;
-using System;
-using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 

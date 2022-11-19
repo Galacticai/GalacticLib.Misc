@@ -1,17 +1,14 @@
 ﻿/// —————————————————————————————————————————————
-//? 
+//?
 //!? 📜 Objects.cs
 //!? 🖋️ Galacticai 📅 2022
 //!  ⚖️ GPL-3.0-or-later
 //?  🔗 Dependencies: No special dependencies
-//? 
+//?
 /// —————————————————————————————————————————————
 
 
-using System;
-using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
 
 namespace GalacticLib.Misc {
     /// <summary> Various tools for <see cref="object"/>s </summary>
