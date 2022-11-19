@@ -1,17 +1,15 @@
 ﻿/// —————————————————————————————————————————————
-//? 
+//?
 //!? 📜 HTTPServer.cs
 //!? 🖋️ Galacticai 📅 2022
 //!  ⚖️ GPL-3.0-or-later
 //?  🔗 Dependencies: No special dependencies
-//? 
+//?
 /// —————————————————————————————————————————————
 
 
-using System;
 using System.Net;
 using System.Text;
-using System.Threading;
 
 namespace GalacticLib.Misc.Networking {
     /// <summary> Listen to a URI prefix and respond with a string by running <see cref="ResponseMethod"/> </summary>
@@ -25,7 +23,7 @@ namespace GalacticLib.Misc.Networking {
         #endregion
         #region Methods
 
-        /// <summary> Close the <see cref="Listener"/> 
+        /// <summary> Close the <see cref="Listener"/>
         /// <br/>
         ///  • Note: <paramref name="confirm"/> value must be "confirm" to proceed </summary>
         /// <param name="confirm"></param>
@@ -46,6 +44,7 @@ namespace GalacticLib.Misc.Networking {
                 try {
                     while (IsListening) {
                         ThreadPool.QueueUserWorkItem(ctx => {
+                            if (ctx == null) return;
                             var context = (HttpListenerContext)ctx;
                             if (context == null) return;
                             try {
