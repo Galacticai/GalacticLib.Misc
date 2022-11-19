@@ -1,4 +1,4 @@
-﻿/// —————————————————————————————————————————————
+﻿// —————————————————————————————————————————————
 //?
 //!? 📜 Paths.cs
 //!? 🖋️ Galacticai 📅 2022
@@ -6,7 +6,7 @@
 //?  🔗 Dependencies:
 //      + (Galacticai) Platforms/Platform.cs
 //?
-/// —————————————————————————————————————————————
+// —————————————————————————————————————————————
 
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -15,16 +15,21 @@ namespace GalacticLib.Misc {
     /// <summary> Various tools for path (filesystem) manipulation </summary>
     public static class Paths {
         #region Extra
-
+        /// <summary> Type of a path </summary>
         public enum PathType {
             None, File, Directory
         }
+        /// <summary> Operating system of a path </summary>
         public enum PathOS {
             None, Windows, Unix
         }
+        /// <summary> Regex matching a valid path string </summary>
+        /// <value> Regex as <see cref="string" /> </value>
         public record PathRegex {
+            /// <summary> Regex matching a path valid in Windows-based systems </summary>
             public const string WINDOWS
                 = @"^(?<drive>[a-z]:)?(?<path>(?:[\\]?(?:[\w !#()-]+|[.]{1,2})+)*[\\])?(?<filename>(?:[.]?[\w !#()-]+)+)?[.]?$";
+            /// <summary> Regex matching a path valid in Unix-based systems </summary>
             public const string UNIX
                 = @"^(/[^/ ]*)+/?$";
         }
@@ -37,26 +42,43 @@ namespace GalacticLib.Misc {
         /// <returns> (ApplicationData) </returns>
         public static string ApplicationData
             => Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        /// <returns> (ApplicationData)/(AppName) </returns>
-        public static string ThisApplicationData
-            => Path.Combine(ApplicationData, Assembly.GetExecutingAssembly().GetName().Name);
-
+        /// <returns><list type="bullet">
+        /// <item> (ApplicationData)/(AppName) </item>
+        /// <item> null (if the executing assembly name is not available) </item>
+        /// </list></returns>
+        public static string? ThisApplicationData {
+            get {
+                string? executingAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+                if (string.IsNullOrEmpty(executingAssemblyName))
+                    return null;
+                return Path.Combine(ApplicationData, executingAssemblyName);
+            }
+        }
         #endregion
 
 
         #region Methods
+        /// <summary> Create a directory for this application (called after the executing assembly name)
+        /// <br/> Note: This cannot be done if the executing assembly name is not available </summary>
+        public static bool TryCreate_ThisApplicationData() {
+            string? thisAppData = ThisApplicationData;
+            if (string.IsNullOrEmpty(thisAppData))
+                return false;
+            new DirectoryInfo(thisAppData).Create();
+            return true;
+        }
 
-        public static void Create_ThisApplicationData()
-            => new DirectoryInfo(ThisApplicationData).Create();
-
+        /// <summary> Get a slash or a backslash depending on the currently running OS </summary>
         /// <returns> <list type="bullet">
         /// <item> Windows: '\' </item> <item> Linux: '/' </item>
         /// </list> </returns>
         public static char GetPathSlash()
-            => Platform.RunningWindows ? '\\' : '/';
+            => Platforms.Platform.RunningWindows ? '\\' : '/';
+        /// <summary> Get a slash or a backslash depending on <paramref name="pathOS"/> </summary>
         public static char GetPathSlash(PathOS pathOS)
             => pathOS == PathOS.Windows ? '\\' : '/';
 
+        /// <summary> Determine the type of this <paramref name="path"/> matches </summary>
         public static PathType GetPathType(this string path) {
             if (File.Exists(path))
                 return PathType.File;
@@ -64,6 +86,7 @@ namespace GalacticLib.Misc {
                 return PathType.Directory;
             else return PathType.None;
         }
+        /// <summary> Determine which OS path regex this <paramref name="path"/> matches </summary>
         public static PathOS GetPathOS(this string path) {
             if (Regex.IsMatch(path, PathRegex.WINDOWS))
                 return PathOS.Windows;
@@ -72,15 +95,23 @@ namespace GalacticLib.Misc {
             else return PathOS.None;
         }
 
+        /// <summary> File or folder exists at the specified <paramref name="path"/> </summary>
         public static bool PathExists(this string path)
             => path.GetPathType() != PathType.None;
+        /// <summary> The specified <paramref name="path"/> is a valid Windows or Unix path </summary>
         public static bool PathIsValid(this string path)
             => Regex.IsMatch(path, PathRegex.WINDOWS)
             || Regex.IsMatch(path, PathRegex.UNIX);
+        /// <summary> The specified <paramref name="fileInfo"/> file contains a reparse point (is a symlink) </summary>
         public static bool PathIsSymbolic(this FileInfo fileInfo)
             => fileInfo.Attributes.HasFlag(FileAttributes.ReparsePoint);
+        /// <summary> The specified <paramref name="path"/> contains a reparse point (is a symlink) </summary>
         public static string[] GetPathParts(this string path)
             => GetPathParts(path, path.GetPathOS());
+        /// <summary> Split the <paramref name="path"/> to its parts
+        /// <br/><br/> Example:
+        /// <br/> each/one/of/these/is/a/part/of/the/path </summary>
+        /// <returns> ["each","one","of","these","is","a","part","of","the","path"] </returns>
         public static string[] GetPathParts(this string path, PathOS pathOS)
             => pathOS switch {
                 PathOS.Windows => path.Split('\\'),
@@ -88,16 +119,23 @@ namespace GalacticLib.Misc {
                 _ => new[] { path }
             };
 
+        /// <summary> Delete a path </summary>
+        /// <param name="path"> Target path <see cref="string" /> </param>
+        /// <returns> true if operation is complete </returns>
         public static bool DeletePath(string path) {
             if (!path.PathExists()) return true;
             //? invalid path: cannot delete
             if (!path.PathIsValid()) return false;
 
             PathType pathType = path.GetPathType();
-            if (pathType == PathType.File)
+            if (pathType == PathType.File) {
                 File.Delete(path);
-            else if (pathType == PathType.Directory)
+                return true;
+            }
+            else if (pathType == PathType.Directory) {
                 Directory.Delete(path);
+                return true;
+            }
             return false;
         }
 
@@ -114,7 +152,9 @@ namespace GalacticLib.Misc {
         public static string GetUnusedPath(this string path, int maxTries) {
             if (!path.PathExists() || !path.PathIsValid())
                 return path;
-            string directory = Path.GetDirectoryName(path);
+            string directory = Path.GetDirectoryName(path) ?? "";
+            if (string.IsNullOrEmpty(directory))
+                return path;
             string name = Path.GetFileNameWithoutExtension(path);
             string dot_extension = Path.GetExtension(path) ?? string.Empty;
             string newPath = string.Empty;

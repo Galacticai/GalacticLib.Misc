@@ -1,6 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-<PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>GalacticLib.Misc</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -8,7 +7,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
     <Title>GalacticLib (Miscellaneous)</Title>
-    <Copyright>©2022 Galacticai</Copyright>
+    <Copyright>�2022 Galacticai</Copyright>
     <PackageProjectUrl>https://Galacticai.github.io/GalacticLib</PackageProjectUrl>
     <PackageRepositoryUrl>https://github.com/Galacticai/GalacticLib.Misc</PackageRepositoryUrl>
     <PackageTags>Galacticai;GalacticLib;Lib;Library;Misc;Miscellaneous;</PackageTags>
@@ -24,8 +23,8 @@
 
 <ItemGroup>
     <None Update="LICENSE">
-        <PackagePath>\</PackagePath>
-        <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <Pack>True</Pack>
     </None>
     <None Update="README.md">
         <PackagePath>\</PackagePath>
