@@ -7,7 +7,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
     <Title>GalacticLib (Miscellaneous)</Title>
-    <Copyright>©2022 Galacticai</Copyright>
+    <Copyright>ï¿½2022 Galacticai</Copyright>
     <PackageProjectUrl>https://Galacticai.github.io/GalacticLib</PackageProjectUrl>
     <PackageRepositoryUrl>https://github.com/Galacticai/GalacticLib.Misc</PackageRepositoryUrl>
     <PackageTags>Galacticai;GalacticLib;Lib;Library;Misc;Miscellaneous;</PackageTags>
@@ -20,6 +20,9 @@
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="GalacticLib.Platforms" Version="1.0.0" />
+  </ItemGroup>
 
 <ItemGroup>
     <None Update="LICENSE">
